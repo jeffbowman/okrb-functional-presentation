@@ -1,3 +1,9 @@
+if $:.select { |element| element == File.dirname(__FILE__) }.size == 0
+  $:.push(".")
+end
+
+require "BitInt"
+
 class DummyGenome < BitInt
   def reproduce(mates)
     mate = mates.random
