@@ -19,9 +19,9 @@ class BitInt < DelegateClass(Integer)
     self.class::BIT_SIZE
   end
 
-  # def uniform_crossover(other); self.class.new(super(other)); end
-  # def one_point_crossover(other); self.class.new(super(other)); end
-  # def two_point_crossover(other); self.class.new(super(other)); end
-  # def point_crossover(other, n); self.class.new(super(other, n)); end
-  # def mutate(prob); self.class.new(super(prob)); end
+  def uniform_crossover(other); self.class.new(super(other)); end
+  # def one_point_crossover(other); self.class.new(p_crossover(1)[other]); end
+  # def two_point_crossover(other); self.class.new(p_crossover(2)[other]); end
+  def point_crossover(other, n); self.class.new(super(other, n)); end
+  def mutate(prob); self.class.new(super(prob)); end
 end

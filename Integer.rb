@@ -10,33 +10,33 @@ class Integer
     crossover_when(other) { |i| decison[i] == 0 }
   end
 
-  def point_crossover(other, n)
-    possible_points = (0...bit_size).to_a
-    points = []
-    n.times { points.push(possible_points.delete_at(rand(possible_points.size))) }
-    crossover_when(other) { |i| points.include?(i) }
-  end
-  
-
-  def one_point_crossover(other)
-    point_crossover(other, 1)
-  end
-  def two_point_crossover(other)
-    point_crossover(other, 2)
-  end
-
-  # def self.p_crossover(n)
-  #   ->(other) {
-  #     possible_points = (0...bit_size).to_a
-  #     points = []
-  #     n.times { points.push(possible_points.delete_at(rand(possible_points.size))) }
-  #     crossover_when(other) { |i| points.include?(i) }
-  #   }
-  # end
-  
   # def point_crossover(other, n)
-  #   p_crossover(n)[other]
+  #   possible_points = (0...bit_size).to_a
+  #   points = []
+  #   n.times { points.push(possible_points.delete_at(rand(possible_points.size))) }
+  #   crossover_when(other) { |i| points.include?(i) }
   # end
+  
+
+  # def one_point_crossover(other)
+  #   point_crossover(other, 1)
+  # end
+  # def two_point_crossover(other)
+  #   point_crossover(other, 2)
+  # end
+
+  def self.p_crossover(n)
+    ->(other) {
+      possible_points = (0...bit_size).to_a
+      points = []
+      n.times { points.push(possible_points.delete_at(rand(possible_points.size))) }
+      crossover_when(other) { |i| points.include?(i) }
+    }
+  end
+  
+  def point_crossover(other, n)
+    p_crossover(n)[other]
+  end
 
   # @one_point_crossover = p_crossover(1)
   # @two_point_crossover = p_crossover(2)
